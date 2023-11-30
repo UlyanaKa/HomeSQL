@@ -27,3 +27,25 @@ DELIMITER ;
 SELECT times(123456) AS result;
 
 --Second task
+
+DELIMITER //
+
+CREATE FUNCTION numbers() RETURNS VARCHAR(100)
+BEGIN
+    DECLARE result VARCHAR(100);
+    DECLARE i INT DEFAULT 1;
+
+    SET result = '';
+
+    WHILE i <= 10 DO
+        IF i % 2 = 0 THEN
+            SET result = CONCAT(result, i, ' ');
+        END IF;
+        SET i = i + 1;
+    END WHILE;
+
+    RETURN result;
+END //
+
+DELIMITER ;
+SELECT numbers();
